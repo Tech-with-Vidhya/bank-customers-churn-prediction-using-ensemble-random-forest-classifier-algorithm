@@ -883,7 +883,7 @@ cm_labels_optim = np.asarray(cm_labels_optim).reshape(2,2)
 sns.heatmap(cm_validation_matrix_optim_model, annot=cm_labels_optim, fmt='', cmap='jet')
 
 
-# ## 17. CLASSIFICATION REPORT BETWEEN THE VALIDATION ACTUALS AND THE VALIDATION PREDICTIONS - OPTIMIZED MODEL/S
+# ## 18. CLASSIFICATION REPORT BETWEEN THE VALIDATION ACTUALS AND THE VALIDATION PREDICTIONS - OPTIMIZED MODEL/S
 
 # In[39]:
 
