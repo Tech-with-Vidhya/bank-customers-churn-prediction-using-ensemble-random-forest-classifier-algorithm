@@ -5,7 +5,7 @@
 
 # ## 1. IMPORTING THE PYTHON LIBRARIES
 
-# In[63]:
+# In[1]:
 
 
 import os
@@ -48,7 +48,7 @@ print("Raw Data Import Completed")
 
 # Verifying the shape of the data
 
-print(actual_raw_data.shape)
+actual_raw_data.shape
 
 
 # In[4]:
@@ -56,7 +56,7 @@ print(actual_raw_data.shape)
 
 # Displaying the first 5 Rows of Data Instances
 
-print(actual_raw_data.head())
+actual_raw_data.head()
 
 
 # In[5]:
@@ -64,7 +64,7 @@ print(actual_raw_data.head())
 
 # Displaying the last 5 Rows of Data Instances
 
-print(actual_raw_data.tail())
+actual_raw_data.tail()
 
 
 # In[6]:
@@ -72,7 +72,7 @@ print(actual_raw_data.tail())
 
 # Verifying the Column Names in the Raw Data
 
-print(actual_raw_data.columns)
+actual_raw_data.columns
 
 
 # In[7]:
@@ -80,7 +80,7 @@ print(actual_raw_data.columns)
 
 # Verifying the Type of the Columns in the Raw Data
 
-print(actual_raw_data.dtypes)
+actual_raw_data.dtypes
 
 
 # In[8]:
@@ -88,7 +88,7 @@ print(actual_raw_data.dtypes)
 
 # Verifying the Null Values in the Raw Data
 
-print(actual_raw_data.isnull().sum())
+actual_raw_data.isnull().sum()
 
 
 # ## 4. DATA VISUALISATION
@@ -102,7 +102,7 @@ raw_data = actual_raw_data[['CreditScore', 'Geography', 'Gender', 'Age', 'Tenure
                            'Balance', 'NumOfProducts', 'HasCrCard', 'IsActiveMember',
                            'EstimatedSalary', 'Exited']]
 
-print(raw_data)
+raw_data
 
 
 # In[10]:
@@ -237,7 +237,7 @@ for feature in input_features:
 
 # ## 5. DATA PRE-PROCESSING
 
-# In[22]:
+# In[10]:
 
 
 # Converting the Categorical Variables into Numeric One-Hot Encoded Variables for Decision Tree IDE Model Training Purposes
@@ -247,23 +247,23 @@ raw_data_pp = pd.get_dummies(raw_data, columns=['Geography', 'Gender', 'HasCrCar
 print("Execution Completed")
 
 
-# In[23]:
+# In[11]:
 
 
 # Verifying the Columns of the Pre-processed Raw Data Frame after Applying One-Hot Encoding Method
 
-print(raw_data_pp.head())
+raw_data_pp.head()
 
 
-# In[24]:
+# In[12]:
 
 
 # Verifying the Shape of the Pre-processed Raw Data Frame after Applying One-Hot Encoding Method
 
-print(raw_data_pp.shape)
+raw_data_pp.shape
 
 
-# In[25]:
+# In[13]:
 
 
 # Normalising the Continuous Variables Columns to Scale to a Value Between 0 and 1 for Decision Tree IDE Model Training Purposes
@@ -277,25 +277,25 @@ raw_data_pp[norm_scale_features] = norm_scale.fit_transform(raw_data_pp[norm_sca
 print("Scaling is Completed")
 
 
-# In[26]:
+# In[14]:
 
 
 # Verifying all the Columns of the Final Pre-processed Raw Data Frame after Applying the Scaling Method
 
-print(raw_data_pp.head())
+raw_data_pp.head()
 
 
-# In[27]:
+# In[15]:
 
 
 # Verifying the Shape of the Pre-processed Raw Data Frame after Applying the Scaling Method
 
-print(raw_data_pp.shape)
+raw_data_pp.shape
 
 
 # ## 6. DATA SPLIT AS TRAIN DATA AND VALIDATION DATA
 
-# In[28]:
+# In[16]:
 
 
 # Defining the Input and the Target Vectors for Decision Tree IDE Model Training Purposes
@@ -309,7 +309,7 @@ y = raw_data_pp['Exited'].values
 print("Execution Completed")
 
 
-# In[29]:
+# In[17]:
 
 
 # Verifying the Shape of the Input and the Output Vectors
@@ -318,7 +318,7 @@ print("The Input Vector Shape is {}".format(X.shape))
 print("The Output Vector Shape is {}".format(y.shape))
 
 
-# In[30]:
+# In[18]:
 
 
 # Splitting the Data Between Train and Validation Data
@@ -328,7 +328,7 @@ X_train, X_validate, y_train, y_validate = train_test_split(X, y, train_size=0.9
 print("Execution Completed")
 
 
-# In[31]:
+# In[19]:
 
 
 # Verifying the Shape of the Train and the Validation Data
@@ -341,7 +341,7 @@ print("Output Validation: {}".format(y_validate.shape))
 
 # ## 7. TRAINING THE RANDOM FOREST CLASSIFIER
 
-# In[32]:
+# In[20]:
 
 
 # Creating an Instance of the Random Forest Classifier Model with the Default Parameter Values
@@ -366,7 +366,7 @@ print("Model Training Completed.....")
 
 # ### Method 1 : Visualising the Random Forest Base Estimators Decision Trees using export_graphviz() Function
 
-# In[33]:
+# In[21]:
 
 
 # Method 1 : Visualising the Random Forest Using export_graphviz() Function
@@ -386,7 +386,7 @@ graph_data = tree.export_graphviz(random_forest_model.estimators_[0], out_file=N
 random_forest_graph = graphviz.Source(graph_data)
 
 # Visualising the Decision Tree
-print(random_forest_graph)
+random_forest_graph
 
 
 # ### Method 2 : Visualising the Random Forest Base Estimators Decision Trees using graph_from_dot_data() Function
@@ -414,14 +414,14 @@ pydot_graph.write_png('Original_Random_Forest.png')
 pydot_graph.set_size('"8,8!"')
 pydot_graph.write_png('Resized_Random_Forest.png')
 
-print(pydot_graph)
+pydot_graph
 
 print("Execution Completed")
 
 
 # ### Method 3 : Visualising the Random Forest Base Estimators Decision Trees using plot_tree() Function
 
-# In[35]:
+# In[22]:
 
 
 # Method 3 : Visualising the Random Forest Using plot_tree() Function
@@ -434,7 +434,7 @@ random_forest_graph = tree.plot_tree(random_forest_model.estimators_[99], featur
                                      filled=True, rounded=True, fontsize=8)
 
 # Visualising the Random Forest
-print(random_forest_graph)
+random_forest_graph
 
 
 # In[36]:
@@ -444,7 +444,7 @@ features = raw_data_pp.drop('Exited', axis=1).columns
 feature_names = []
 for feature in features:
     feature_names.append(feature)
-print(feature_names)
+feature_names
 
 
 # ### Method 4 : Visualising the Random Forest Base Estimators Decision Trees in Text Format using export_text() Function
@@ -472,7 +472,7 @@ print(random_forest_text)
 
 # ## 9. RETRIEVING THE FEATURE IMPORTANCE VALUES OF THE INPUT FEATURES
 
-# In[38]:
+# In[23]:
 
 
 # Retrieving the Information Gain i.e.; Feature Importance Values of the Input Features
@@ -493,12 +493,12 @@ for feature, column in enumerate(raw_data_pp.drop('Exited', axis=1)):
 # Ordering the Feature Importance Values in the Increasing Order of Importance
 ig_df_final_sorted = ig_df_final.sort_values(by='Feature Importance', ascending=False).reset_index(drop=True)
     
-print(ig_df_final_sorted)
+ig_df_final_sorted
 
 
 # ## 10. CALCULATING AND COMPARING THE TRAINING AND VALIDATION ACCURACY
 
-# In[39]:
+# In[24]:
 
 
 # Accuracy on the Train Data
@@ -510,19 +510,19 @@ print("Validation Accuracy: ", random_forest_model.score(X_validate, y_validate)
 
 # ## 11. VALIDATING THE CLASSIFIER RESULTS ON THE VALIDATION DATA
 
-# In[40]:
+# In[25]:
 
 
 # Validating the Classifier Results on the Validation Data
 
 y_validate_pred = random_forest_model.predict(X_validate)
 
-print(y_validate_pred)
+y_validate_pred
 
 
 # ## 12. COMPARING THE VALIDATION ACTUALS WITH THE VALIDATION PREDICTIONS
 
-# In[41]:
+# In[26]:
 
 
 # Comparing the Validation Predictions with the Validation Actuals for the first 20 Data Instances
@@ -536,7 +536,7 @@ print(y_validate_pred[:20])
 
 # ## 13. CONFUSION MATRIX BETWEEN THE VALIDATION ACTUALS AND THE VALIDATION PREDICTIONS
 
-# In[42]:
+# In[27]:
 
 
 # Defining the Instance of Confusion Matrix
@@ -547,29 +547,29 @@ print("Execution Completed")
 
 # ## Method 1 : Plotting the Confusion Matrix with Numeric Values using Seaborn heatmap() Function
 
-# In[43]:
+# In[28]:
 
 
 # Method 1 : Plotting the Confusion Matrix with Numeric Values using Seaborn heatmap() Function
 
 churn_cm_plot_1 = sns.heatmap(cm_validation_matrix, annot=True)
-print(churn_cm_plot_1)
+churn_cm_plot_1
 
 
 # ## Method 2 : Plotting the Confusion Matrix with Percentage Values using Seaborn heatmap() Function
 
-# In[44]:
+# In[29]:
 
 
 # Method 2 : Plotting the Confusion Matrix with Percentage Values Rounded-off to 2 Decimal Places using Seaborn heatmap() Function
 
 churn_cm_plot_2 = sns.heatmap(cm_validation_matrix/np.sum(cm_validation_matrix), annot=True, fmt='0.2%', cmap='plasma')
-print(churn_cm_plot_2)
+churn_cm_plot_2
 
 
 # ## Method 3 : Plotting the Confusion Matrix with Numeric Values, Percentage Values and the Corresponding Text using Seaborn heatmap() Function
 
-# In[45]:
+# In[30]:
 
 
 # Method 3 : Plotting the Confusion Matrix with Numeric Values, Percentage Values and the Corresponding Text using Seaborn heatmap() Function
@@ -584,12 +584,12 @@ cm_labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in zip(cm_names,cm_counts,cm_per
 
 cm_labels = np.asarray(cm_labels).reshape(2,2)
 
-print(sns.heatmap(cm_validation_matrix, annot=cm_labels, fmt='', cmap='jet'))
+sns.heatmap(cm_validation_matrix, annot=cm_labels, fmt='', cmap='jet')
 
 
 # ## 14. CLASSIFICATION REPORT BETWEEN THE VALIDATION ACTUALS AND THE VALIDATION PREDICTIONS
 
-# In[46]:
+# In[31]:
 
 
 # Classification Report and Metrics between the Validation Actuals and the Validation Predictions
@@ -605,7 +605,7 @@ print(classification_report_validation)
 
 # ## 15. INDIVIDUAL CLASSIFIER METRICS BETWEEN THE VALIDATION ACTUALS AND THE VALIDATION PREDICTIONS
 
-# In[47]:
+# In[32]:
 
 
 # Individual Classifier Metrics between the Validation Actuals and the Validation Predictions
@@ -636,7 +636,7 @@ print("Customer Churn Classifier - ROC AUC Score: {}%".format(churn_roc_auc_scor
 
 # ### Creating a For Loop to Tune the Random Forest Classifier for the Various Combinations of the Hyper-Parameters
 
-# In[48]:
+# In[33]:
 
 
 # Calculating the max_features values
@@ -650,7 +650,7 @@ print(max_feature_sqrt)
 print(max_feature_log2)
 
 
-# In[49]:
+# In[34]:
 
 
 '''
@@ -721,7 +721,7 @@ for p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11 in product(max_depth, min_sampl
 '''
 
 
-# In[61]:
+# In[35]:
 
 
 # Method 2
@@ -789,11 +789,11 @@ for p1, p2 in product(max_depth, max_features):
     cm_labels_tune = np.asarray(cm_labels_tune).reshape(2,2)
     plot = sns.heatmap(cm_validation_matrix_tune, annot=cm_labels_tune, fmt='', cmap='jet')                                                                                           
     title = "Confusion Matrix {} - max_depth: {}, max_features: {}, Classification Accuracy: {}%".format(scenario_id, p1, p2, churn_tune_accuracy)
-    print(plot)
+    plot
     
 
 
-# In[78]:
+# In[36]:
 
 
 # Method 3
@@ -851,9 +851,54 @@ for p1, p2 in product(max_depth, max_features):
     print(" Scenario {} - max_depth: {}, max_features: {}, Classification Accuracy: {}%".format(scenario_id, p1, p2, churn_tune_accuracy))
     
     # Defining the Instance of Confusion Matrix
-    print(plot_confusion_matrix(random_forest_tune_model, X_validate, y_validate))  
+    plot_confusion_matrix(random_forest_tune_model, X_validate, y_validate)  
     plt.show()
     title = "Confusion Matrix {} - max_depth: {}, max_features: {}, Classification Accuracy: {}%".format(scenario_id, p1, p2, churn_tune_accuracy)
+
+
+# ## 17. CONFUSION MATRIX - OPTIMIZED MODEL/S
+
+# ### Method 3 : Plotting the Confusion Matrix with Numeric Values, Percentage Values and the Corresponding Text using Seaborn heatmap() Function
+
+# In[38]:
+
+
+# Defining the Instance of Confusion Matrix - Optimized Random Forest Classifier Model/s
+
+cm_validation_matrix_optim_model = confusion_matrix(y_validate, y_validate_tune_pred)
+
+# Method 3 : Plotting the Confusion Matrix with Numeric Values, Percentage Values and the Corresponding Text using Seaborn heatmap() Function
+# Optimized Random Forest Classifier Model/s
+
+cm_names_optim = ['True Negative', 'False Positive', 'False Negative', 'True Positive']
+
+cm_counts_optim = ["{0:0.0f}".format(value) for value in cm_validation_matrix_optim_model.flatten()]
+
+cm_percentages_optim = ["{0:0.2%}".format(value) for value in cm_validation_matrix_optim_model.flatten()/np.sum(cm_validation_matrix_optim_model)]
+
+cm_labels_optim = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in zip(cm_names_optim,cm_counts_optim,cm_percentages_optim)]
+
+cm_labels_optim = np.asarray(cm_labels_optim).reshape(2,2)
+
+sns.heatmap(cm_validation_matrix_optim_model, annot=cm_labels_optim, fmt='', cmap='jet')
+
+
+# ## 17. CLASSIFICATION REPORT BETWEEN THE VALIDATION ACTUALS AND THE VALIDATION PREDICTIONS - OPTIMIZED MODEL/S
+
+# In[39]:
+
+
+# Optimized Random Forest Classifier Model
+
+# Classification Report and Metrics between the Validation Actuals and the Validation Predictions
+
+target_names = ['No Churn', 'Churn']
+
+# Defining the Classification Report for the Validation Data
+classification_report_validation_optim_model = classification_report(y_validate, y_validate_tune_pred, target_names=target_names)
+
+# Displaying the Classification Report
+print(classification_report_validation)
 
 
 # ### As we can see from the above results; the Random Forest Classifier Model tuned with the parameters as max_depth = 6 and max_features as auto, sqrt, log2 has performed better in the validation data with the accuracy of about 84.5%.
